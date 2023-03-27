@@ -37,7 +37,7 @@
       const thisBooksList = this;
       thisBooksList.bookImageDOM = document.querySelectorAll(select.containerOf.bookImage);
       thisBooksList.filtersDOM = document.querySelector(select.containerOf.filters);
-      thisBooksList.bookListDOM = document.querySelector(select.containerOf.booksContainer);
+      thisBooksList.bookListDOM = document.querySelector(select.containerOf.booksList);
     }
 
     render(){
@@ -115,20 +115,19 @@
 
       for(let book of thisBooksList.data){
         let shouldBeHidden = false;
-        const hiddenBooks = document.querySelector(select.containerOf.bookImage + '[data-id = "' + book.id + '"]');
+        const hiddenBooks = document.querySelector(select.containerOf.images + '[data-id = "' + book.id + '"]');
         for(let filter of thisBooksList.filters){
                 
           if(!book.details[filter]){
             shouldBeHidden = true;
             break;
-          }
-        
-          if(shouldBeHidden){
-            hiddenBooks.classList.add('hidden');
-          }else{
-            hiddenBooks.classList.remove('hidden');
-          }
-        }    
+          }  
+        } 
+        if(shouldBeHidden){
+          hiddenBooks.classList.add('hidden');
+        }else{
+          hiddenBooks.classList.remove('hidden');
+        }   
       }
 
     }    
